@@ -108,6 +108,35 @@ form > span > a {
     color: var(--secondary-purple);
 }
 
+/* 
+    adding micro-interations( hover, focus, focus-visible 
+    for the inputs, submit button and the all the links on the page
+*/
+form > input:focus, form > input:focus-visible {
+    border: 2px solid rgb(177, 176, 176);
+}
+form > input[type="submit"]:hover, form > input[type="submit"]:focus-visible {
+    background-color: var(--secondary-purple);
+    border: none;
+}
+a {
+    position: relative;
+    top: 0;
+}
+a::before {
+    position: absolute;
+    left: 0;
+    bottom: -4px;
+    width: 100%;
+    height: 2px;
+    content: "";
+    background-color: var(--secondary-purple);
+    transition: 0.2s;
+    transform: scaleX(0);
+}
+a:hover::before, a:focus::before, a:focus-visible::before {
+    transform: scaleX(1);
+}
 
 
 
