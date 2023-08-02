@@ -219,7 +219,7 @@ aside > div#glass {
 
 
 /* breakpoint for big tablets */
-@media screen and ( max-width: 1200px ) {
+@media screen and ( max-width: 75rem ) {
     main {
         padding-inline: 1rem;
         padding-block: 1rem;
@@ -249,7 +249,7 @@ aside > div#glass {
 
 
 /* breakpoint for small tablets */
-@media screen and ( max-width: 900px ) {
+@media screen and ( max-width: 56.25rem ) {
     body {
         block-size: 100vh;
     }
@@ -283,7 +283,7 @@ aside > div#glass {
 
 
 /* breakpoint for mobile */
-@media screen and ( max-width: 500px ) {
+@media screen and ( max-width: 31.25rem ) {
     body {
         block-size: 100vh;
         flex-direction: column-reverse;
