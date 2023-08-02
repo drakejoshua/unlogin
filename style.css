@@ -17,10 +17,10 @@ body {
     display: flex;
     flex-direction: row;
     flex-wrap: nowrap;
-    height: 100vh;
+    block-size: 100vh;
 }
 body > * {
-    width: 50%;
+    inline-size: 50%;
 }
 
 
@@ -46,8 +46,8 @@ main > p {
 form > label, form > input {
     display: block;
     margin-inline: 0px;
-    margin-block: 10px 0px;
-    width: 100%;
+    margin-block: 0.625rem 0rem;
+    inline-size: 100%;
 }
 form > label {
     font-weight: 600;
@@ -55,10 +55,11 @@ form > label {
 }
 form > input {
     outline: none;
-    border: 2px solid rgb(223, 223, 223);
+    border-block: 2px solid rgb(223, 223, 223);
+    border-inline: 2px solid rgb(223, 223, 223);
     font-size: 1rem;
-    padding-inline: 15px;
-    padding-block: 10px;
+    padding-inline: 1rem;
+    padding-block: 0.625rem;
     border-radius: 10px;
 }
 form > div {
@@ -82,15 +83,16 @@ form > div > div {
     gap: 5px;
 }
 form > div > div > input[type="checkbox"] {
-    width: 17px;
-    height: 17px;
+    inline-size: 1.0625rem;
+    block-size: 1.0625rem;
 }
 form > div > div > label {
     text-transform: capitalize;
     font-size: 0.9rem;
 }
 form > input[type="submit"] {
-    border: none;
+    border-block: none;
+    border-inline: none;
     background-color: var(--accent-purple);
     color: var(--main-color);
     margin-block: 0rem 5rem;
@@ -113,11 +115,13 @@ form > span > a {
     for the inputs, submit button and the all the links on the page
 */
 form > input:focus, form > input:focus-visible {
-    border: 2px solid rgb(177, 176, 176);
+    border-inline: 2px solid rgb(177, 176, 176);
+    border-block: 2px solid rgb(177, 176, 176);
 }
 form > input[type="submit"]:hover, form > input[type="submit"]:focus-visible {
     background-color: var(--secondary-purple);
-    border: none;
+    border-inline: none;
+    border-block: none;
 }
 a {
     position: relative;
@@ -127,8 +131,8 @@ a::before {
     position: absolute;
     left: 0;
     bottom: -4px;
-    width: 100%;
-    height: 2px;
+    inline-size: 100%;
+    block-size: 2px;
     content: "";
     background-color: var(--secondary-purple);
     transition: 0.2s;
@@ -147,20 +151,20 @@ aside {
     overflow: hidden;
 }
 aside > div#circle {
-    width: clamp( 50px, 30%, 200px );
-    height: clamp( 50px, 30%, 200px );
+    inline-size: clamp( 50px, 30%, 200px );
+    block-size: clamp( 50px, 30%, 200px );
     background-color: var(--secondary-purple);
     border-radius: 50%;
     position: absolute;
     left: 50%;
     top: 50%;
-    animation: enlarge 1s linear 1 forwards;
+    animation: enlarge 1.2s linear 1 forwards;
 }
 aside > div#glass {
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
     flex-grow: 0.8;
-    width: 100%;
+    inline-size: 100%;
     position: absolute;
     bottom: 0;
     animation: grow 1s linear 1s 1 both;
@@ -180,10 +184,17 @@ aside > div#glass {
 
 @keyframes grow {
     from {
-        height: 0%;
+        block-size: 0%;
     }
 
     to {
-        height: 60%;
+        block-size: 60%;
     }
+}
+
+
+
+/* adding responsiveness using some breakpoints */
+@media screen and ( max-width: 600px ) {
+    
 }
