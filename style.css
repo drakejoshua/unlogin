@@ -158,16 +158,18 @@ aside > div#circle {
     position: absolute;
     left: 50%;
     top: 50%;
-    animation: enlarge 1.2s linear 1 forwards;
+    transform: translate( -50%, -80% ) scale(1);
+    animation: enlarge 1.2s linear 1;
 }
 aside > div#glass {
     background-color: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(8px);
     flex-grow: 0.8;
     inline-size: 100%;
+    block-size: 60%;
     position: absolute;
     bottom: 0;
-    animation: grow 1s linear 1s 1 both;
+    animation: grow 1s linear 1s 1 backwards;
 }
 
 
@@ -195,6 +197,146 @@ aside > div#glass {
 
 
 /* adding responsiveness using some breakpoints */
-@media screen and ( max-width: 600px ) {
+
+/* 
+    breakpoints to ensure accessiblity such as when user prefers no animations/reduced motion or the 
+    any of the devices pointing devices can't hover
+ */
+@media ( any-hover: none ) {
+    a::before, form > input[type="submit"] {
+        transition: none;
+    }
+}
+@media ( prefers-reduced-motion: reduce ) or ( update: slow ) {
+    aside > div#circle, aside > div#glass {
+        animation: none;
+    }
     
+    a::before {
+        transition: none;
+    }
+}
+
+
+/* breakpoint for big tablets */
+@media screen and ( max-width: 1200px ) {
+    main {
+        padding-inline: 1rem;
+        padding-block: 1rem;
+    }
+    main > h1, main > form, main > p {
+        width: 70%;
+        margin-inline: auto;
+    }
+    form > input[type="submit"] {
+        margin-block: 0rem 2rem;
+    }
+
+    aside > div#circle {
+        inline-size: clamp( 40px, 50%, 150px );
+        block-size: clamp( 40px, 50%, 150px );
+    }
+    @keyframes enlarge {
+        from {
+            transform: translate( -50%, -90% ) scale(0);
+        }
+    
+        to {
+            transform: translate( -50%, -90% ) scale(1);
+        }
+    }
+}
+
+
+/* breakpoint for small tablets */
+@media screen and ( max-width: 900px ) {
+    body {
+        block-size: 100vh;
+    }
+
+    main {
+        padding-inline: 1rem;
+        padding-block: 1rem;
+    }
+    main > h1, main > form, main > p {
+        width: 90%;
+        margin-inline: auto;
+    }
+    form > input[type="submit"] {
+        margin-block: 0rem 2rem;
+    }
+
+    aside > div#circle {
+        inline-size: clamp( 40px, 50%, 150px );
+        block-size: clamp( 40px, 50%, 150px );
+    }
+    @keyframes enlarge {
+        from {
+            transform: translate( -50%, -90% ) scale(0);
+        }
+    
+        to {
+            transform: translate( -50%, -90% ) scale(1);
+        }
+    }
+}
+
+
+/* breakpoint for mobile */
+@media screen and ( max-width: 500px ) {
+    body {
+        block-size: 100vh;
+        flex-direction: column-reverse;
+    }
+
+    body > *:nth-child(1) {
+        block-size: 80%;
+        inline-size: 100%;
+    }
+
+    body > *:nth-child(2) {
+        block-size: 20%;
+        inline-size: 100%;
+    }
+
+    aside {
+        background-color: var(--main-color);
+    }
+    aside > div#circle {
+        inline-size: clamp( 40px, 30%, 70px );
+        block-size: clamp( 40px, 50%, 70px );
+    }
+    @keyframes enlarge {
+        from {
+            transform: translate( -50%, -70% ) scale(0);
+        }
+    
+        to {
+            transform: translate( -50%, -70% ) scale(1);
+        }
+    }
+
+    main {
+        padding-inline: 1rem;
+        padding-block: 1rem;
+        overflow: auto;
+    }
+    main > h1, main > p {
+        text-align: center;
+    }
+    main > h1, main > form, main > p {
+        width: 98%;
+        margin-inline: auto;
+    }
+    main > h1 {
+        font-weight: 600;
+        margin-block: 1rem 1rem;
+        margin-inline: auto;
+    }
+    main > img {
+        display: none;
+    }
+    form > input[type="submit"] {
+        margin-block: 0rem 2rem;
+    }
 }
